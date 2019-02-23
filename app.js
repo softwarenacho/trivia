@@ -2,7 +2,7 @@ console.log('Coded with love by Nacho Betancourt');
 
 angular.module('triviaApp', []).controller('TriviaCtrl', ($scope, $http) => {
 
-  let api_base = "https://opentdb.com/api.php?amount=10&type=multiple&difficulty=easy&category=";
+  let api_base = "https://opentdb.com/api.php?amount=10&type=multiple&category=";
   let loading = $('#loading');
   let categories = $('#categories');
   let correct = '<img src="icons/correct.svg" alt="correct">';
