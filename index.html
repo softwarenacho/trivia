@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <title>Nacho's trivia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.min.js"></script>
+  <script type = "text/javascript" src="app.js"></script>
+</head>
+<body ng-app="triviaApp" ng-controller="TriviaCtrl" ng-init="init()">
+  <h1 class="title tri-d" style="height: 40px;">let's play some trivia {{local}}</h1>
+  <div id="loading">
+    <img src="icons/loading.svg" alt="loading">
+  </div>
+  <div id="categories" ng-show="categories">
+    <div class="category" ng-repeat="(id, category) in categories" ng-click="select_category(id)">
+      <img src="icons/{{category}}.svg" alt="{{category}}">
+      <span class="tri-d">{{category}}</span>
+    </div>
+  </div>
+  <div id="questions" ng-if="questions">
+    <div class="questions tri-d" ng-repeat="question in questions">
+      <span class="question">{{decode(question.question)}}</span>
+      <div class="answers">
+        <span class="answer tri-d" ng-repeat="answer in question.answers" ng-click="answer_question(question, answer, $event)">{{decode(answer)}}</span>
+      </div>
+    </div>
+    <h2 id="category_stat" class="title tri-d" ng-if="questions">
+      <span style="margin-right: 25px;">{{category_name}}</span>
+      <span class="score correct">
+        <img src="icons/correct.svg" alt="correct">
+        {{score.correct}}
+      </span>
+      <span class="score incorrect">
+        <img src="icons/incorrect.svg" alt="incorrect">
+        {{score.incorrect}}
+      </span>
+    </h2>
+  </div>
+</body>
+</html>
